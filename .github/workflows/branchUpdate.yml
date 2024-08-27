@@ -1,17 +1,21 @@
-trigger:
-- feature/YSP-800-devbranchUpdate
+parameters:
+- name: sourceBranch
+  displayName: 'Source Branch'
+  type: string
+  default: 'feature/YSP-800-devbranchUpdate'
  
 pool:
   vmImage: 'ubuntu-latest'
  
 steps:
 - checkout: self
+  persistCredentials: true
  
 - script: |
-    git checkout feature/YSP-800-devbranchUpdate
+    git checkout ${{ parameters.sourceBranch }}
     git checkout b2bSellingPathDev
     git pull
-    git checkout feature/YSP-800-devbranchUpdate
+    git checkout ${{ parameters.sourceBranch }}
     git merge b2bSellingPathDev
     git push
   displayName: 'Merge and Push Branches'
