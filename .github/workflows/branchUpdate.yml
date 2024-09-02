@@ -1,3 +1,6 @@
+trigger:
+-none
+
 parameters:
 - name: sourceBranch
   displayName: 'Source Branch'
